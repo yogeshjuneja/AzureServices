@@ -1,0 +1,68 @@
+﻿@model WebApplication1.Models.ImageDetail
+    @using WebApplication1.Models;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+
+    @using (Html.BeginForm("index", "Index", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <input type="file" name="file" id="file" />
+        <input type="submit" value="Submit" />
+    }
+    @{
+
+
+        if (Model != null)
+        {
+            <table>
+                <tr>
+                    <td>
+                        Height
+                    </td>
+                    <td>
+                        @Model.metadata.height
+                    </td>
+
+                    <td>
+                        Width
+                    </td>
+                    <td>
+                        @Model.metadata.width
+                    </td>
+
+                    <td>
+                        Format
+                    </td>
+                    <td>
+                        @Model.metadata.format
+                    </td>
+                </tr>
+
+            </table>
+            <h4>Categories</h4>
+            <ul>
+                @foreach(Category c in Model.categories)
+                {
+                    <li>
+                        @c.name
+                    </li>
+                }
+            </ul>
+        }
+    }
+
+
+
+    <div>
+    </div>
+</body>
+</html>
